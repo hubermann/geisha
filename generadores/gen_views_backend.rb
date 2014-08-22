@@ -29,7 +29,13 @@ all_file <<	"
 		echo '<td> 
 		<div class=\"btn-group\">
 		<a class=\"btn btn-small\" href=\"'.base_url('control/#{@plural}/delete_comfirm/'.$row->id.'').'\">Eliminar</a>
-		<a class=\"btn btn-small\" href=\"'.base_url('control/#{@plural}/editar/'.$row->id.'').'\">Editar</a>
+		<a class=\"btn btn-small\" href=\"'.base_url('control/#{@plural}/editar/'.$row->id.'').'\">Editar</a>"
+
+if @imagenes == "2"
+	all_file <<	"<a class=\"btn btn-small\" href=\"'.base_url('control/#{@plural}/imagenes/'.$row->id.'').'\">Imagenes</a>"
+end
+
+all_file <<	"		
 		<!--<a class=\"btn btn-small\" href=\"'.base_url('control/#{@plural}/detail/'.$row->id.'').'\">detalle</a>-->
 		</div>
 		</td>';

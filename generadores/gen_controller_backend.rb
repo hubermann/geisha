@@ -354,6 +354,16 @@ end
 
 if @imagenes == "2"
 	controller_file <<"
+	public function imagenes(){
+	$this->load->helper('form');
+	$data['content'] = 'control/"+@plural+"/imagenes';
+	$data['title'] = 'Imagenes ';
+	$data['menu'] = 'control/"+@plural+"/menu_"+@singular+"';
+	$data['query_imagenes'] = $this->imagenes_"+@singular+"->imagenes_"+@singular+"($this->uri->segment(4));
+	$this->load->view('control/control_layout', $data);
+}
+
+
 	public function add_imagen(){
 
 	//adjunto
@@ -410,7 +420,7 @@ public function upload_file(){
 	
 	$exts_humano = implode(', ',$exts_humano);
 	$ext = $_FILES['adjunto']['type'];
-	#$ext = strtolower($ext);
+	\#$ext = strtolower($ext);
 	if(!in_array($ext, $file_extensions_allowed)){
 		$exts = implode(', ',$file_extensions_allowed);
 		
@@ -427,7 +437,7 @@ public function upload_file(){
 		$random = substr(md5(rand()),0,6);
 		$name_whitout_whitespaces = str_replace(\" \",\"-\",$_FILES['adjunto']['name']);
 		$imagname=''.$random.'_'.$name_whitout_whitespaces;
-		#$thumbname='tn_'.$imagname;
+		\#$thumbname='tn_'.$imagname;
 		$yukle->set_file_name($imagname);
 		
 	
@@ -435,10 +445,10 @@ public function upload_file(){
 		
 		
 		if($yukle->is_ok()){
-		#$yukle->resize(600,0);
-		#$yukle->set_thumbnail_name('tn_'.$random.'_'.$name_whitout_whitespaces);
-		#$yukle->create_thumbnail();
-		#$yukle->set_thumbnail_size(180, 0);
+		\#$yukle->resize(600,0);
+		\#$yukle->set_thumbnail_name('tn_'.$random.'_'.$name_whitout_whitespaces);
+		\#$yukle->create_thumbnail();
+		\#$yukle->set_thumbnail_size(180, 0);
 		
 			//UPLOAD ok
 			$file['filename'] = $imagname;

@@ -79,6 +79,8 @@ def creator_model(plural,singular,imagenes, campos_clean)
 		require "./generadores/gen_migration_imagenes.rb"
 		#MODELO DE LAS IMAGENES ASOCIADAS
 		require "./generadores/gen_model_imagenes.rb"
+		#CARPETA IMAGENES
+		create_folder("../images-#{@plural}")
 	end
 
 	#MODELO

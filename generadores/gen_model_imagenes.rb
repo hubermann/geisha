@@ -27,7 +27,7 @@ class Imagenes_#{@singular} extends CI_Model{
 	//all by publiccacion
 	public function imagenes_#{@singular}($id_#{@singular}){
 
-		$this->db->select()->from('imagenes_#{@plural}')->where('id',$id_#{@singular});
+		$this->db->select()->from('imagenes_#{@plural}')->where('#{@singular}_id',$id_#{@singular});
 		return $this->db->get();
 
 	}
