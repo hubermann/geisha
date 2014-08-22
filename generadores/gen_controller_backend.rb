@@ -6,7 +6,13 @@ class "+@plural+" extends CI_Controller{
 public function __construct(){
 
 parent::__construct();
-$this->load->model('"+@singular+"');
+$this->load->model('"+@singular+"');"
+
+if @imagenes == "2"
+	controller_file << "$this->load->model('imagenes_"+@singular+"');"
+end
+
+controller_file <<"
 $this->load->helper('url');
 $this->load->library('session');
 
@@ -344,7 +350,116 @@ public function upload_file(){
 }
 "
 end
+##IMAGENES MULTIPLES
 
+if @imagenes == "2"
+	controller_file <<"
+	public function add_imagen(){
+
+	//adjunto
+	if($_FILES['adjunto']['size'] > 0){
+
+	$file  = $this->upload_file();
+
+	if ( $file['status'] != 0 ){
+		//guardo
+		$nueva_imagen = array(  
+			'"+@singular+"_id' => $this->input->post('id'),
+			'filename' => $file['filename'],
+		);
+		#save
+		$this->session->set_flashdata('success', 'Imagen cargada!');
+		$this->imagenes_"+@singular+"->add_record($nueva_imagen);	
+		redirect('control/"+@plural+"/imagenes/'.$this->input->post('id'));
+	}
+
+
+	}
+	$this->session->set_flashdata('error', $file['msg']);
+	redirect('control/"+@plural+"/imagenes/'.$this->input->post('id'));
+}
+
+public function delete_imagen(){
+	$id_imagen = $this->uri->segment(4); 
+	 
+	$imagen = $this->imagenes_"+@singular+"->get_record($id_imagen);
+	$path = 'images-"+@plural+"/'.$imagen->filename;
+	unlink($path);
+	
+	$this->imagenes_"+@singular+"->delete_record($id_imagen);	
+	#echo \"Eliminada : \".$imagen->filename;
+}
+
+
+
+/*******  FILE ADJUNTO  ********/
+public function upload_file(){
+	
+	//1 = OK - 0 = Failure
+	$file = array('status' => '', 'filename' => '', 'msg' => '' );
+	
+	array('image/jpeg','image/pjpeg', 'image/jpg', 'image/png', 'image/gif','image/bmp');
+	//check extencion
+	/*
+	$file_extensions_allowed = array('application/pdf', 'application/msword', 'application/rtf', 'application/vnd.ms-excel','application/vnd.ms-powerpoint','application/zip','application/x-rar-compressed', 'text/plain');
+	$exts_humano = array('PDF', 'WORD', 'RTF', 'EXCEL', 'PowerPoint', 'ZIP', 'RAR');
+	*/
+	$file_extensions_allowed = array('image/jpeg','image/pjpeg', 'image/jpg', 'image/png', 'image/gif','image/bmp');
+	$exts_humano = array('JPG', 'JPEG', 'PNG', 'GIF');
+	
+	
+	$exts_humano = implode(', ',$exts_humano);
+	$ext = $_FILES['adjunto']['type'];
+	#$ext = strtolower($ext);
+	if(!in_array($ext, $file_extensions_allowed)){
+		$exts = implode(', ',$file_extensions_allowed);
+		
+	$file['msg'] .=\"<p>\".$_FILES['adjunto']['name'].\" <br />Puede subir archivos que tengan alguna de estas extenciones: \".$exts_humano.\"</p>\";
+	$file['status'] = 0 ;
+	}else{
+		include(APPPATH.'libraries/class.upload.php');
+		$yukle = new upload;
+		$yukle->set_max_size(1900000);
+		$yukle->set_directory('./images-"+@plural+"');
+		$yukle->set_tmp_name($_FILES['adjunto']['tmp_name']);
+		$yukle->set_file_size($_FILES['adjunto']['size']);
+		$yukle->set_file_type($_FILES['adjunto']['type']);
+		$random = substr(md5(rand()),0,6);
+		$name_whitout_whitespaces = str_replace(\" \",\"-\",$_FILES['adjunto']['name']);
+		$imagname=''.$random.'_'.$name_whitout_whitespaces;
+		#$thumbname='tn_'.$imagname;
+		$yukle->set_file_name($imagname);
+		
+	
+		$yukle->start_copy();
+		
+		
+		if($yukle->is_ok()){
+		#$yukle->resize(600,0);
+		#$yukle->set_thumbnail_name('tn_'.$random.'_'.$name_whitout_whitespaces);
+		#$yukle->create_thumbnail();
+		#$yukle->set_thumbnail_size(180, 0);
+		
+			//UPLOAD ok
+			$file['filename'] = $imagname;
+			$file['status'] = 1;
+		}
+		else{
+			$file['status'] = 0 ;
+			$file['msg'] = 'Error al subir archivo';
+		}
+		
+		//clean
+		$yukle->set_tmp_name('');
+		$yukle->set_file_size('');
+		$yukle->set_file_type('');
+		$imagname='';
+	}//fin if(extencion)	
+		
+		
+	return $file;
+}"
+end
 controller_file <<"
 
 } //end class

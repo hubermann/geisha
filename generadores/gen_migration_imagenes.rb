@@ -13,7 +13,7 @@ class Migration_Create_Imagenes_#{@plural.capitalize} extends CI_Migration
                     \"unsigned\"            =>        TRUE,
                     \"auto_increment\"    =>        TRUE,
  
-                ),#{@singular}_id\"    		=>        array(
+                ),\"#{@singular}_id\"    		=>        array(
                     \"type\"                =>        \"INT\",
                     \"constraint\"        	=>        11,
                 ),

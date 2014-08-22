@@ -77,6 +77,8 @@ def creator_model(plural,singular,imagenes, campos_clean)
 	#MIGRACION IMAGENES
 	if imagenes == "2"
 		require "./generadores/gen_migration_imagenes.rb"
+		#MODELO DE LAS IMAGENES ASOCIADAS
+		require "./generadores/gen_model_imagenes.rb"
 	end
 
 	#MODELO
