@@ -199,15 +199,27 @@ echo form_hidden('id', $query->id);
 "
 @campos_clean.each do |campo|
 	if campo != "filename"
-		form_edit_file <<"
-		<!-- Text input-->
-		<div class=\"control-group\">
-		<label class=\"control-label\">Ref</label>
-		<div class=\"controls\">
-		<input value=\"<?php echo $query->#{campo}; ?>\" type=\"text\" name=\"#{campo}\" />
-		<?php echo form_error('#{campo}','<p class=\"error\">', '</p>'); ?>
-		</div>
-		</div>"
+		if campo == "description" || campo == "body" || campo == "descripcion"
+			form_edit_file <<"
+			<!-- Text input-->
+			<div class=\"control-group\">
+			<label class=\"control-label\">#{campo.capitalize}</label>
+			<div class=\"controls\">
+			<textarea name=\"#{campo}\" id=\"#{campo}\"><?php echo $query->#{campo}; ?></textarea>
+			<?php echo form_error('#{campo}','<p class=\"error\">', '</p>'); ?>
+			</div>
+			</div>"
+		else
+			form_edit_file <<"
+			<!-- Text input-->
+			<div class=\"control-group\">
+			<label class=\"control-label\">#{campo.capitalize}</label>
+			<div class=\"controls\">
+			<input value=\"<?php echo $query->#{campo}; ?>\" type=\"text\" name=\"#{campo}\" />
+			<?php echo form_error('#{campo}','<p class=\"error\">', '</p>'); ?>
+			</div>
+			</div>"
+		end
 	end
 end
 
@@ -310,15 +322,27 @@ echo form_hidden('#{@singular}[id]');
 
 @campos_clean.each do |campo|
 	if campo != "filename"
-		form_new_file <<"
-		<!-- Text input-->
-		<div class=\"control-group\">
-		<label class=\"control-label\">#{campo.capitalize}</label>
-		<div class=\"controls\">
-		<input value=\"<?php echo set_value('#{campo}'); ?>\" type=\"text\" name=\"#{campo}\" />
-		<?php echo form_error('#{campo}','<p class=\"error\">', '</p>'); ?>
-		</div>
-		</div>"
+		if campo == "description" || campo == "body" || campo == "descripcion"
+			form_new_file <<"
+			<!-- Text input-->
+			<div class=\"control-group\">
+			<label class=\"control-label\">#{campo.capitalize}</label>
+			<div class=\"controls\">
+			<textarea name=\"#{campo}\" id=\"#{campo}\"><?php echo set_value('#{campo}'); ?></textarea>
+			<?php echo form_error('#{campo}','<p class=\"error\">', '</p>'); ?>
+			</div>
+			</div>"
+		else
+			form_new_file <<"
+			<!-- Text input-->
+			<div class=\"control-group\">
+			<label class=\"control-label\">#{campo.capitalize}</label>
+			<div class=\"controls\">
+			<input value=\"<?php echo set_value('#{campo}'); ?>\" type=\"text\" name=\"#{campo}\" />
+			<?php echo form_error('#{campo}','<p class=\"error\">', '</p>'); ?>
+			</div>
+			</div>"
+		end
 	end
 end
 
