@@ -87,17 +87,17 @@ file_control_layout = "<!DOCTYPE html>
     <?php 
 
       if($this->session->flashdata('success')): 
-      echo '<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>
+      echo '<div class=\"alert alert-success\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>
       '.$this->session->flashdata('success').'</div>';
       endif;
 
       if($this->session->flashdata('warning')): 
-      echo '<div class=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>
+      echo '<div class=\"alert alert-warning\"  role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>
       '.$this->session->flashdata('warning').'</div>';
       endif;
 
       if($this->session->flashdata('error')): 
-      echo '<div class=\"alert alert-error\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>
+      echo '<div class=\"alert alert-danger\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>
       '.$this->session->flashdata('error').'</div>';
       endif;
 
@@ -150,6 +150,11 @@ file_control_layout = "<!DOCTYPE html>
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+        <script>
+        window.setTimeout(function() { $(\".alert-success\").alert('close'); }, 4000);
+        window.setTimeout(function() { $(\".alert-warning\").alert('close'); }, 4000);
+        window.setTimeout(function() { $(\".alert-danger\").alert('close'); }, 4000);
         </script>
     </body>
 </html>"
