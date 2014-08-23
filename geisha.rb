@@ -54,6 +54,30 @@ if base_url.length < 6
 	puts "La url del desarrollo es " + base_url
 end
 
+nombre_bd = ""
+if nombre_bd.length < 2
+	puts "BD nombre?"  
+	STDOUT.flush  
+	nombre_bd = gets.chomp  
+	#puts "La url del desarrollo es " + base_url
+end
+
+user_bd = ""
+if user_bd.length < 2
+	puts "User BD?"  
+	STDOUT.flush  
+	user_bd = gets.chomp  
+	#puts "La url del desarrollo es " + base_url
+end
+
+pass_bd = ""
+if pass_bd.length < 2
+	puts "Pass BD?"  
+	STDOUT.flush  
+	pass_bd = gets.chomp  
+	#puts "La url del desarrollo es " + base_url
+end
+
 encryption_key = (0...35).map { ('a'..'z').to_a[rand(26)] }.join
 
 
@@ -92,6 +116,17 @@ replace_config(migration_file, "$config['migration_enabled'] = FALSE;", "$config
 routes_file = "../application/config/routes.php"
 replace_config(routes_file, "/* End of file routes.php */", "$route['control'] = 'dashboard';\n$route['control/logout'] = 'dashboard/logout';\n/* append */")
 #desde aca se agregan las nuevas lineas en /* append */
+
+#ROUTES  (FIRST WRITE)
+database_file = "../application/config/database.php"
+replace_config(database_file, "$db['default']['username'] = '';", "$db['default']['username'] = '#{user_bd}';")
+replace_config(database_file, "$db['default']['password'] = '';", "$db['default']['password'] = '#{pass_bd}';")
+replace_config(database_file, "$db['default']['database'] = '';", "$db['default']['database'] = '#{nombre_bd}';")
+
+
+
+
+
 
 #gen controller migration
 load "generadores/gen_migration_c.rb"
