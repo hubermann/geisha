@@ -37,6 +37,8 @@ class Migration_Create_Imagenes_#{@plural.capitalize} extends CI_Migration
 }
 ?>"
 
+
+
 file_migration_imagenes = File.new("../application/migrations/00x_create_imagenes_#{@plural}.php", "w+")
 if file_migration_imagenes
    file_migration_imagenes.syswrite(migration_imagenes)

@@ -81,6 +81,19 @@ def creator_model(plural,singular,imagenes, campos_clean)
 		require "./generadores/gen_model_imagenes.rb"
 		#CARPETA IMAGENES
 		create_folder("../images-#{@plural}")
+
+		#agregar al htacces la carpeta reemplazando \#*****\#
+		htaccess_file = "../.htaccess"
+		replace_config(htaccess_file, "#*****#", "images-#{@plural}|\#*****#")
+	end
+
+	if imagenes == "1"
+		#CARPETA IMAGENES
+		create_folder("../images-#{@plural}")
+		#agregar al htacces la carpeta reemplazando \#*****\#
+		htaccess_file = "../.htaccess"
+		replace_config(htaccess_file, "#*****#", "images-#{@plural}|\#*****#")
+
 	end
 
 	#MODELO
@@ -144,4 +157,4 @@ end
 #comienza recoleccion de datos
 recolector
 
-
+puts "fin script."

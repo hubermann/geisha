@@ -43,6 +43,8 @@ migration_output <<"
 }
 ?>"
 
+
+
 file_migration = File.new("../application/migrations/00x_create_#{@plural}.php", "w+")
 if file_migration
    file_migration.syswrite(migration_output)

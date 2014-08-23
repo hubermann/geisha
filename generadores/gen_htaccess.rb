@@ -1,5 +1,5 @@
 htaccess = "RewriteEngine on
-RewriteCond $1 !^(index\.php|public_folder|images-something)
+RewriteCond $1 !^(index\.php|public_folder|\#*****\#)
 RewriteRule ^(.*)$ /index.php/$1 [L]"
 
 

@@ -43,10 +43,7 @@ def replace_config(file_to_edit, string_A, string_B)
 	puts status
 end
 
-
-
 base_url = ""
-
 if base_url.length < 6
 	puts "¿Cual es la base_url? (algo como http://urllocal:8888)"  
 	STDOUT.flush  
@@ -87,8 +84,6 @@ create_folder("../application/migrations")
 #carpeta publica
 create_folder("../public_folder")
 
-
-
 #CONFIG FILE
 config_file = "../application/config/config.php"
 
@@ -115,6 +110,7 @@ replace_config(migration_file, "$config['migration_enabled'] = FALSE;", "$config
 #ROUTES  (FIRST WRITE)
 routes_file = "../application/config/routes.php"
 replace_config(routes_file, "/* End of file routes.php */", "$route['control'] = 'dashboard';\n$route['control/logout'] = 'dashboard/logout';\n/* append */")
+replace_config(routes_file, "/* append */", "$route['migrate/(:num)'] = 'migrate/index/$';\n/* append */")
 #desde aca se agregan las nuevas lineas en /* append */
 
 #DB
@@ -124,12 +120,15 @@ replace_config(database_file, "$db['default']['password'] = '';", "$db['default'
 replace_config(database_file, "$db['default']['database'] = '';", "$db['default']['database'] = '#{nombre_bd}';")
 
 
-
-
-
-
 #gen controller migration
 load "generadores/gen_migration_c.rb"
+file_count_migrations = File.new("count_migrations.rb", "w+")
+if file_count_migrations
+   file_count_migrations.syswrite("@qty_migrations = 2")
+else
+   puts "Unable to open file!"
+end
+
 
 #gen controller migration
 load "generadores/gen_dashboard_c.rb"

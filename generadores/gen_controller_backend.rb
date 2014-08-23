@@ -81,7 +81,9 @@ public function create(){
 	$this->load->library('form_validation');"
 
 @campos_clean.each do |campo|
-	controller_file << "\n$this->form_validation->set_rules('#{campo}', '#{campo.capitalize}', 'required');\n"
+	if campo != "filename"
+		controller_file << "\n$this->form_validation->set_rules('#{campo}', '#{campo.capitalize}', 'required');\n"
+	end
 end
 
 controller_file <<"
@@ -156,7 +158,9 @@ public function update(){
 
 
 @campos_clean.each do |campo|
-	controller_file << "\n$this->form_validation->set_rules('#{campo}', '#{campo.capitalize}', 'required');\n"
+	if campo != "filename"
+		controller_file << "\n$this->form_validation->set_rules('#{campo}', '#{campo.capitalize}', 'required');\n"
+	end
 end
 
 

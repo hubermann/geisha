@@ -20,8 +20,10 @@ end
 if @imagenes =="1"
 	all_file <<	"
 		if($row->filename){
-		echo '<img src=\"'.base_url('images-#{@plural}/'.$row->filename).'\" width=\"100\" />';
-		}"
+		echo '<td><img src=\"'.base_url('images-#{@plural}/'.$row->filename).'\" width=\"100\" /></td>';
+		}else{
+			echo \"<td></td>\"
+		}\n"
 end
 all_file <<	"
 		echo '</td>';
