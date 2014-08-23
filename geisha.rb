@@ -117,7 +117,7 @@ routes_file = "../application/config/routes.php"
 replace_config(routes_file, "/* End of file routes.php */", "$route['control'] = 'dashboard';\n$route['control/logout'] = 'dashboard/logout';\n/* append */")
 #desde aca se agregan las nuevas lineas en /* append */
 
-#ROUTES  (FIRST WRITE)
+#DB
 database_file = "../application/config/database.php"
 replace_config(database_file, "$db['default']['username'] = '';", "$db['default']['username'] = '#{user_bd}';")
 replace_config(database_file, "$db['default']['password'] = '';", "$db['default']['password'] = '#{pass_bd}';")
