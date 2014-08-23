@@ -43,9 +43,12 @@ migration_output <<"
 }
 ?>"
 
+#verifico la cantidad de archvos de migracion
+dir_migrations = '../application/migrations'
+cantidad  = Dir[File.join(dir_migrations, '**', '*')].count { |file| File.file?(file) }
+cantidad = cantidad + 1
 
-
-file_migration = File.new("../application/migrations/00x_create_#{@plural}.php", "w+")
+file_migration = File.new("../application/migrations/00#{cantidad}_create_#{@plural}.php", "w+")
 if file_migration
    file_migration.syswrite(migration_output)
 else
