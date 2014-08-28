@@ -96,7 +96,11 @@ controller_file <<"
 		$data['menu'] = 'control/"+@plural+"/menu_"+@singular+"';
 		$this->load->view('control/control_layout', $data);
 
-	}else{"
+	}else{
+		/*
+		$this->load->helper('url');
+		$slug = url_title($this->input->post('titulo'), 'dash', TRUE);
+		*/"
 
 #si lleva un adjunto
 if @imagenes == "1"
@@ -188,9 +192,8 @@ controller_file <<"
 				{
 				//guardo
 				$"+@singular+" = $this->"+@singular+"->get_record($this->input->post('id'));
-					 
-					 if(strlen($"+@singular+"->filename) > 6){
-					 	$path = 'images-"+@plural+"/'.$"+@singular+"->filename;
+					 $path = 'images-"+@plural+"/'.$"+@singular+"->filename;
+					 if(is_link($path)){
 						unlink($path);
 					 }
 				
@@ -272,22 +275,17 @@ public function delete(){
 		$this->session->set_flashdata('success', '"+@singular+" eliminado!');
 
 		$prod = $this->"+@singular+"->get_record($this->input->post('id'));
-		if(strlen($prod->filename) > 6){
 			$path = 'images-"+@plural+"/'.$prod->filename;
-			unlink($path);
-		}
+			if(is_link($path)){
+				unlink($path);
+			}
 		
-
 
 		$this->"+@singular+"->delete_record();
 		redirect('control/"+@plural+"', 'refresh');
 		
 
-}
-
-
-
-
+	}
 }
 "
 if @imagenes == "1"

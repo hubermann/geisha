@@ -136,7 +136,7 @@ file_control_layout = "<!DOCTYPE html>
 
     <!-- END BODY -->
         <script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js\"></script>
-        <script>window.jQuery || document.write('<script src=\"<?php echo base_url(\"js/vendor/jquery-1.11.0.min.js\"); ?>\"><\\/script>')</script>
+        <script>window.jQuery || document.write('<script src=\"<?php echo base_url(\"public_folder/js/vendor/jquery-1.11.0.min.js\"); ?>\"><\\/script>')</script>
 
         <script src=\"<?php echo base_url('public_folder/js/plugins.js'); ?>\"></script>
         <script src=\"<?php echo base_url('public_folder/js/bootstrap.js'); ?>\"></script>

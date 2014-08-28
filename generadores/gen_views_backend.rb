@@ -22,7 +22,7 @@ if @imagenes =="1"
 		if($row->filename){
 		echo '<td><img src=\"'.base_url('images-#{@plural}/'.$row->filename).'\" width=\"100\" /></td>';
 		}else{
-			echo \"<td></td>\"
+			echo \"<td></td>\";
 		}\n"
 end
 all_file <<	"

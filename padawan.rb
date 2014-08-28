@@ -96,14 +96,17 @@ def creator_model(plural,singular,imagenes, campos_clean)
 
 	end
 
-	#MODELO
+	# MODELO
 	require "./generadores/gen_model.rb"
 
-	#CONTROLLER
+	# CONTROLLER
 	require "./generadores/gen_controller_backend.rb"
 
-	#VIEWS
+	# VIEWS
 	require "./generadores/gen_views_backend.rb"
+	
+	# Ruta para el paginado del modelo
+	replace_config(routes_file, "/* append */", "$route['control/#{plural}/(:num)'] = '#{plural}/index/$';\n/* append */")
 	
 
 end
