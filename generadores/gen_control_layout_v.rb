@@ -142,15 +142,7 @@ file_control_layout = "<!DOCTYPE html>
         <script src=\"<?php echo base_url('public_folder/js/bootstrap.js'); ?>\"></script>
         <script src=\"<?php echo base_url('public_folder/js/main.js'); ?>\"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
+        
         <script>
         window.setTimeout(function() { $(\".alert-success\").alert('close'); }, 4000);
         window.setTimeout(function() { $(\".alert-warning\").alert('close'); }, 4000);
