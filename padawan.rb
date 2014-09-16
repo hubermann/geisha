@@ -106,6 +106,7 @@ def creator_model(plural,singular,imagenes, campos_clean)
 	require "./generadores/gen_views_backend.rb"
 	
 	# Ruta para el paginado del modelo
+	routes_file = "../application/config/routes.php"
 	replace_config(routes_file, "/* append */", "$route['control/#{plural}/(:num)'] = '#{plural}/index/$';\n/* append */")
 	
 
