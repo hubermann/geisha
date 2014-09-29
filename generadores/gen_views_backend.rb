@@ -307,7 +307,7 @@ echo form_hidden('#{@singular}[id]');
 		$categorias = $this->Categoria->get_records_menu();
 		if($categorias){
 
-			foreach ($categorias as $value) {
+			foreach ($categorias->result() as $value) {
 				echo '<option value=\"'.$value->id.'\">'.$value->nombre.'</option>';
 			}
 		}

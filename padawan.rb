@@ -107,7 +107,7 @@ def creator_model(plural,singular,imagenes, campos_clean)
 	
 	# Ruta para el paginado del modelo
 	routes_file = "../application/config/routes.php"
-	replace_config(routes_file, "/* append */", "$route['control/#{plural}/(:num)'] = '#{plural}/index/$';\n/* append */")
+	replace_config(routes_file, "/* append */", "$route['control/#{plural}/(:num)'] = 'control/#{plural}/index/$';\n/* append */")
 	
 
 end
@@ -160,5 +160,9 @@ end
 
 #comienza recoleccion de datos
 recolector
+
+#limpio el htaccess
+htaccess_file = "../.htaccess"
+replace_config(htaccess_file, "#*****#", "")
 
 puts "fin script."
