@@ -205,7 +205,7 @@ echo form_hidden('id', $query->id);
 			<div class=\"control-group\">
 			<label class=\"control-label\">#{campo.capitalize}</label>
 			<div class=\"controls\">
-			<textarea name=\"#{campo}\" id=\"#{campo}\"><?php echo $query->#{campo}; ?></textarea>
+			<textarea name=\"#{campo}\" id=\"#{campo}\" class=\"form-control\"><?php echo $query->#{campo}; ?></textarea>
 			<?php echo form_error('#{campo}','<p class=\"error\">', '</p>'); ?>
 			</div>
 			</div>"
@@ -215,7 +215,7 @@ echo form_hidden('id', $query->id);
 			<div class=\"control-group\">
 			<label class=\"control-label\">#{campo.capitalize}</label>
 			<div class=\"controls\">
-			<input value=\"<?php echo $query->#{campo}; ?>\" type=\"text\" name=\"#{campo}\" />
+			<input value=\"<?php echo $query->#{campo}; ?>\" type=\"text\" class=\"form-control\" name=\"#{campo}\" />
 			<?php echo form_error('#{campo}','<p class=\"error\">', '</p>'); ?>
 			</div>
 			</div>"
@@ -236,7 +236,7 @@ if @imagenes == "1"
 	} ?>
 
 </div>
-	<input value=\"<?php echo set_value('filename'); ?>\" type=\"file\" name=\"filename\" onchange=\"show_preview(this)\"/>
+	<input value=\"<?php echo set_value('filename'); ?>\" type=\"file\" class=\"form-control\" name=\"filename\" onchange=\"show_preview(this)\"/>
 	<?php echo form_error('filename','<p class=\"error\">', '</p>'); ?>
 	</div>
 </div>
@@ -328,7 +328,7 @@ echo form_hidden('#{@singular}[id]');
 			<div class=\"control-group\">
 			<label class=\"control-label\">#{campo.capitalize}</label>
 			<div class=\"controls\">
-			<textarea name=\"#{campo}\" id=\"#{campo}\"><?php echo set_value('#{campo}'); ?></textarea>
+			<textarea name=\"#{campo}\" id=\"#{campo}\" class=\"form-control\"><?php echo set_value('#{campo}'); ?></textarea>
 			<?php echo form_error('#{campo}','<p class=\"error\">', '</p>'); ?>
 			</div>
 			</div>"
@@ -338,7 +338,7 @@ echo form_hidden('#{@singular}[id]');
 			<div class=\"control-group\">
 			<label class=\"control-label\">#{campo.capitalize}</label>
 			<div class=\"controls\">
-			<input value=\"<?php echo set_value('#{campo}'); ?>\" type=\"text\" name=\"#{campo}\" />
+			<input value=\"<?php echo set_value('#{campo}'); ?>\" class=\"form-control\" type=\"text\" name=\"#{campo}\" />
 			<?php echo form_error('#{campo}','<p class=\"error\">', '</p>'); ?>
 			</div>
 			</div>"
@@ -353,7 +353,7 @@ if @imagenes == "1"
 	<label class=\"control-label\">Imagen</label>
 	<div class=\"controls\">
 	<div id=\"previewImg\"></div>
-	<input value=\"<?php echo set_value('filename'); ?>\" type=\"file\" name=\"filename\" onchange=\"show_preview(this)\"/>
+	<input value=\"<?php echo set_value('filename'); ?>\" type=\"file\" class=\"form-control\" name=\"filename\" onchange=\"show_preview(this)\"/>
 	<?php echo form_error('filename','<p class=\"error\">', '</p>'); ?>
 	</div>
 </div>
