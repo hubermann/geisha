@@ -30,15 +30,15 @@ all_file <<	"
 
 		echo '<td> 
 		<div class=\"btn-group\">
-		<a class=\"btn btn-small\" href=\"'.base_url('control/#{@plural}/delete_comfirm/'.$row->id.'').'\">Eliminar</a>
-		<a class=\"btn btn-small\" href=\"'.base_url('control/#{@plural}/editar/'.$row->id.'').'\">Editar</a>"
+		<a class=\"btn btn-small\" href=\"'.base_url('control/#{@plural}/delete_comfirm/'.$row->id.'').'\"><i class=\"fa fa-trash-o\"></i></a>
+		<a class=\"btn btn-small\" href=\"'.base_url('control/#{@plural}/editar/'.$row->id.'').'\"><i class=\"fa fa-edit\"></i></a>"
 
 if @imagenes == "2"
-	all_file <<	"<a class=\"btn btn-small\" href=\"'.base_url('control/#{@plural}/imagenes/'.$row->id.'').'\">Imagenes</a>"
+	all_file <<	"<a class=\"btn btn-small\" href=\"'.base_url('control/#{@plural}/imagenes/'.$row->id.'').'\"><i class=\"fa fa-camera-retro\"></i></a>"
 end
 
 all_file <<	"		
-		<!--<a class=\"btn btn-small\" href=\"'.base_url('control/#{@plural}/detail/'.$row->id.'').'\">detalle</a>-->
+		<!--<a class=\"btn btn-small\" href=\"'.base_url('control/#{@plural}/detail/'.$row->id.'').'\"><i class=\"fa fa-chain\"></i></a>-->
 		</div>
 		</td>';
 
