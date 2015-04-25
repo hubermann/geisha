@@ -5,23 +5,29 @@ class "+@plural+" extends CI_Controller{
 
 public function __construct(){
 
-parent::__construct();
-$this->load->model('"+@singular+"');"
+	parent::__construct();
+	$this->load->model('"+@singular+"');"
 
-if @imagenes == "2"
-	controller_file << "$this->load->model('imagenes_"+@singular+"');"
-end
+	if @imagenes == "2"
+		controller_file << "$this->load->model('imagenes_"+@singular+"');"
+	end
 
-controller_file <<"
-$this->load->helper('url');
-$this->load->library('session');
+	controller_file <<"
+	$this->load->helper('url');
+	$this->load->library('session');
 
-//Si no hay session redirige a Login
-if(! $this->session->userdata('logged_in')){
-redirect('dashboard');
-}
+	//Si no hay session redirige a Login
+	if(! $this->session->userdata('logged_in')){
+	redirect('dashboard');
+	}
 
+	if( ! ini_get('date.timezone') ){
+	    date_default_timezone_set('GMT');
+	    setlocale(LC_ALL,\"es_ES\");
+	    setlocale(LC_TIME, 'es_AR');
+	}
 
+	$this->data['thumbnail_sizes'] = array(); //thumbnails sizes 
 
 }
 
@@ -97,10 +103,13 @@ controller_file <<"
 		$this->load->view('control/control_layout', $data);
 
 	}else{
-		/*
-		$this->load->helper('url');
-		$slug = url_title($this->input->post('titulo'), 'dash', TRUE);
-		*/"
+		
+		if($this->input->post('slug')){
+			$this->load->helper('url');
+			$slug = url_title($this->input->post('titulo'), 'dash', TRUE);
+		}
+		
+		"
 
 #si lleva un adjunto
 if @imagenes == "1"
@@ -326,10 +335,16 @@ public function upload_file(){
 
 
 		if($yukle->is_ok()){
-			\#$yukle->resize(600,0);
-			\#$yukle->set_thumbnail_name('tn_'.$random.'_'.$name_whitout_whitespaces);
-			\#$yukle->create_thumbnail();
-			\#$yukle->set_thumbnail_size(180, 0);
+			
+			if(count($this->data['thumbnail_sizes'])){
+	    		foreach ($this->data['thumbnail_sizes'] as $thumb_size) {
+	    			//create thumbnail
+					$yukle->resize(1000,0);
+					$yukle->set_thumbnail_name('tn_'.$thumb_size.'_'.$imagname);
+					$result_thumb = $yukle->create_thumbnail();
+					$yukle->set_thumbnail_size($thumb_size, 0);
+	    		}
+	    	}
 
 			//UPLOAD ok
 			$file['filename'] = $imagname;

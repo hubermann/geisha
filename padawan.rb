@@ -106,10 +106,12 @@ def creator_model(plural,singular,imagenes, campos_clean)
 	require "./generadores/gen_views_backend.rb"
 	
 	# Ruta para el paginado del modelo
-	routes_file = "../application/config/routes.php"
-	replace_config(routes_file, "/* append */", "$route['control/#{plural}/(:num)'] = 'control/#{plural}/index/$';\n/* append */")
-	#aca se traba y queda publicando la ultima lenea
-
+	check = 1
+	if check == 1
+	  routes_file = "../application/config/routes.php"
+	  replace_config(routes_file, "/* append */", "$route['control/#{plural}/(:num)'] = 'control/#{plural}/index/$';\n/* append */")
+	  ckeck = check + 1
+	end
 end
 
 
