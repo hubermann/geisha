@@ -108,7 +108,7 @@ def creator_model(plural,singular,imagenes, campos_clean)
 	# Ruta para el paginado del modelo
 	routes_file = "../application/config/routes.php"
 	replace_config(routes_file, "/* append */", "$route['control/#{plural}/(:num)'] = 'control/#{plural}/index/$';\n/* append */")
-	
+	#aca se traba y queda publicando la ultima lenea
 
 end
 
