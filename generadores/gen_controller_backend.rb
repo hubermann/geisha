@@ -87,7 +87,7 @@ public function create(){
 	$this->load->library('form_validation');"
 
 @campos_clean.each do |campo|
-	if campo != "filename"
+	if campo != "filename" && campo != "slug"
 		controller_file << "\n$this->form_validation->set_rules('#{campo}', '#{campo.capitalize}', 'required');\n"
 	end
 end
@@ -108,6 +108,7 @@ controller_file <<"
 			$this->load->helper('url');
 			$slug = url_title($this->input->post('titulo'), 'dash', TRUE);
 		}
+
 		
 		"
 
@@ -131,7 +132,12 @@ controller_file <<"$new"+@singular+" = array("
 #campos para el array encargado de guardar
 @campos_clean.each do |campo|
 	if campo != "filename"
-		controller_file << " '#{campo}' => $this->input->post('#{campo}'), \n"
+		if campo == "slug"
+			controller_file << " 'slug' => $slug, \n"
+		else
+			controller_file << " '#{campo}' => $this->input->post('#{campo}'), \n"
+		end
+		
 	end
 	
 end
@@ -169,9 +175,8 @@ public function update(){
 	$this->load->helper('form');
 	$this->load->library('form_validation'); " 	
 
-
 @campos_clean.each do |campo|
-	if campo != "filename"
+	if campo != "filename" && campo != "slug"
 		controller_file << "\n$this->form_validation->set_rules('#{campo}', '#{campo.capitalize}', 'required');\n"
 	end
 end
@@ -229,7 +234,11 @@ controller_file <<"
 #campos para el array de update
 @campos_clean.each do |campo|
 	if campo != "filename"
-		controller_file << "\n'#{campo}' => $this->input->post('#{campo}'),\n"
+		if campo == "slug"
+			controller_file << "\n'slug' => $slug,\n"
+		else
+			controller_file << "\n'#{campo}' => $this->input->post('#{campo}'),\n"
+		end
 	end
 end			
 
