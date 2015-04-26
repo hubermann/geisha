@@ -13,6 +13,7 @@ file_control_layout = "<!DOCTYPE html>
         <link rel=\"stylesheet\" href=\"<?php echo base_url('public_folder/css/normalize.min.css'); ?>\">
         <link rel=\"stylesheet\" href=\"<?php echo base_url('public_folder/css/bootstrap.min.css'); ?>\">
         <link rel=\"stylesheet\" href=\"<?php echo base_url('public_folder/css/main.css'); ?>\">
+        <link rel=\"stylesheet\" href=\"<?php echo base_url('public_folder/css/font-awesome.min.css'); ?>\">
 
         <script src=\"<?php echo base_url('public_folder/js/vendor/modernizr-2.6.2.min.js'); ?>\"></script>
         <style>
@@ -139,7 +140,7 @@ file_control_layout = "<!DOCTYPE html>
         <script>window.jQuery || document.write('<script src=\"<?php echo base_url(\"public_folder/js/vendor/jquery-1.11.0.min.js\"); ?>\"><\\/script>')</script>
 
         <script src=\"<?php echo base_url('public_folder/js/plugins.js'); ?>\"></script>
-        <script src=\"<?php echo base_url('public_folder/js/bootstrap.js'); ?>\"></script>
+        <script src=\"<?php echo base_url('public_folder/js/bootstrap.min.js'); ?>\"></script>
         <script src=\"<?php echo base_url('public_folder/js/main.js'); ?>\"></script>
 
         

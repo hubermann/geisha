@@ -8,7 +8,7 @@ controller_dashboard = "<!DOCTYPE html>
     <meta name=\"author\" content=\"\">
 
     <!-- Le styles -->
-    <link href=\"<?php echo base_url('/public_folder/assets/css/bootstrap.css'); ?>\" rel=\"stylesheet\">
+    <link href=\"<?php echo base_url('/public_folder/assets/css/bootstrap.min.css'); ?>\" rel=\"stylesheet\">
     <style type=\"text/css\">
       body {
         padding-top: 40px;
