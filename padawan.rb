@@ -62,7 +62,7 @@ end
 
 
 def creator_model(plural,singular,imagenes, campos_clean)
-
+	puts "Creando modelo.."
 	#Paso datos a variables de instancia para ser accesibles desde los requiere
 	@plural = plural
 	@singular = singular
