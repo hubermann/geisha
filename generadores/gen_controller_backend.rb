@@ -219,6 +219,11 @@ end
 controller_file <<"		
 		$id=  $this->input->post('id');
 
+		if($this->input->post('slug')){
+			$this->load->helper('url');
+			$slug = url_title($this->input->post('titulo'), 'dash', TRUE);
+		}
+
 		$edited"+@singular+" = array(  "
 
 #campos para el array de update
