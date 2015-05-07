@@ -10,8 +10,8 @@ class --singular-- extends CI_Model{
 	//all
 	public function get_records($num,$start){
 		$this->db->select()->from('--plural--')->order_by('id','ASC')->limit($num,$start);
-		return $this->db->get();
-
+		$rs = $this->db->get();
+		return $rs->result();
 	}
 
 	//detail

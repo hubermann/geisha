@@ -3,9 +3,9 @@ all_file = "
 <h2><?php echo $title; ?></h2>
 
 <?php 
-if(count($query->result())){
+if(count($query)){
 	echo '<table class=\"table table-striped\">';
-	foreach ($query->result() as $row):
+	foreach ($query as $row):
 
 		/* $nombre_categoria = $this->categoria->traer_nombre($row->categoria_id); */
 
