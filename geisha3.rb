@@ -88,7 +88,7 @@ create_folder("../public_folder")
 config_file = "../application/config/config.php"
 
 #base Url
-replace_config(config_file, "$config['base_url']	= '';", "$config['base_url']	= '"+base_url+"';")
+replace_config(config_file, "$config['base_url'] = '';", "$config['base_url'] = '"+base_url+"';")
 #indexpage
 replace_config(config_file, "$config['index_page'] = 'index.php';", "$config['index_page'] = '';")
 
@@ -99,25 +99,33 @@ load "generadores/gen_htaccess.rb"
 #encryption key
 replace_config(config_file, "$config['encryption_key'] = '';", "$config['encryption_key']  = '"+encryption_key+"';")
 
+
+#session drivers
+replace_config(config_file, "$config['sess_driver'] = 'files';", "$config['sess_driver'] = 'database';")
+replace_config(config_file, "$config['sess_save_path'] = NULL;", "$config['sess_save_path'] = 'ci_sessions';")
+replace_config(config_file, "$config['sess_driver'] = 'files';", "$config['sess_driver'] = 'database';")
+
+
 #AUTOLOAD
 autoload_file = "../application/config/autoload.php"
 replace_config(autoload_file, "$autoload['libraries'] = array();", "$autoload['libraries'] = array('database', 'session');")
 
 #MIGRATION
 migration_file = "../application/config/migration.php"
+replace_config(migration_file, "$config['migration_type'] = 'timestamp';", "$config['migration_type'] = 'sequential';")
 replace_config(migration_file, "$config['migration_enabled'] = FALSE;", "$config['migration_enabled'] = TRUE;")
 
 #ROUTES  (FIRST WRITE)
 routes_file = "../application/config/routes.php"
-replace_config(routes_file, "/* End of file routes.php */", "$route['control'] = 'dashboard';\n$route['control/logout'] = 'dashboard/logout';\n/* append */")
+replace_config(routes_file, "*/", "*/\n$route['control'] = 'dashboard';\n$route['control/logout'] = 'dashboard/logout';\n/* append */")
 replace_config(routes_file, "/* append */", "$route['migrate/(:num)'] = 'migrate/index/$';\n/* append */")
 #desde aca se agregan las nuevas lineas en /* append */
 
 #DB
 database_file = "../application/config/database.php"
-replace_config(database_file, "$db['default']['username'] = '';", "$db['default']['username'] = '#{user_bd}';")
-replace_config(database_file, "$db['default']['password'] = '';", "$db['default']['password'] = '#{pass_bd}';")
-replace_config(database_file, "$db['default']['database'] = '';", "$db['default']['database'] = '#{nombre_bd}';")
+replace_config(database_file, "'username' => ''", "'username' => '#{user_bd}';")
+replace_config(database_file, "'password' => ''", "'password' => '#{pass_bd}'")
+replace_config(database_file, "'database' => ''", "'database' => '#{nombre_bd}'")
 
 
 #gen controller migration
@@ -153,4 +161,4 @@ load "generadores/gen_modal_layout_v.rb"
 load "generadores/gen_control_layout_v.rb"
 
 
-puts "End | Ahora puede usarse padawan.rb para crear modelos."
+puts "End | Ahora puede usarse padawan.rb para crear modelos.\n Recuerde crear tabla de sessiones "

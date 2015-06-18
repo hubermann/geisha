@@ -89,8 +89,8 @@ confirm_file <<"
 
 <label class=\"checkbox inline\">
 
-<input type=\"checkbox\" name=\"comfirm\" id=\"comfirm\" />
-<p>Confirma eliminar?</p>
+
+<p style=\"margin-left:1.3em\"><input type=\"checkbox\" name=\"comfirm\" id=\"comfirm\" /> Confirma eliminar?</p>
 <?php echo form_error('comfirm','<p class=\"error\">', '</p>'); ?>
  </label>
 </div>
